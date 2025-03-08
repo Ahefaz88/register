@@ -1,0 +1,178 @@
+<html>
+<title> </title>
+<head>
+    <style>
+
+        body{
+            width: 100% ;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background:linear-gradient(45deg,#0a0a0a,#3a4552)
+
+
+        }
+        .calculator{
+
+             border:1px solid #717377 ; 
+             background:transparent;
+             padding: 20px;
+             border-radius: 20px;
+             box-shadow: 0px 3px 15px rgba(113,115,119,0.5);
+             width: 400px;
+
+         
+        }
+
+        .buttons{
+         
+
+        }
+        input{
+             width: 370px;
+             height: 40px;
+             border-radius: 10px;    
+             background: transparent;
+             color: #fff;
+             text-align: right;
+             padding: 10px;
+             font-size: 2em;
+             border: none;
+             margin-top: 20px;
+             box-shadow: 0px 3px 15px rgba(84,84,84,0.1);
+             
+
+
+
+
+        }
+        .first-row,.second-row,.third-row,.fourth-row,.last-row
+        {
+            display: flex;
+            gap: 50px;
+            margin-top: 20px;
+            margin-right: 20px;
+        
+            
+        }
+        
+
+        
+        button{
+    border: none;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    border-radius: 50%;
+    background: transparent;
+    color: #ffffff;
+    font-size: 20px;
+    box-shadow: -8px -8px 15px rgba(255, 255, 255, 0.07);
+    cursor: pointer;
+}
+
+button:hover {
+     
+    opacity: 0.3; 
+      background-color: rgba(255, 255, 255, 0.2); 
+
+}
+
+
+    </style>
+<body>
+
+    
+
+
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+        <div class="first-row"> 
+            <button style="color:orangered"; class="clear" onclick="clearDisplay() ">AC</button>
+            <button style="color:orangered"; onclick="appendvalue('x')">x</button>
+            <button style="color:orangered"; onclick="appendvalue('%')">%</button>
+            <button style="color:orangered"; onclick="appendvalue('/')">/</button>
+
+        </div>
+        <div class="second-row">
+                <button class="op" onclick="appendvalue('7') ">7</button>
+                <button onclick="appendvalue('8')">8</button>
+                <button onclick="appendvalue('9')">9</button>
+                <button  style="color:orangered"; onclick="appendvalue('*')">*</button>
+            </div>
+    
+         <div class="third-row">
+                <button class="op" onclick="appendvalue('4') ">4</button>
+                <button onclick="appendvalue('5')">5</button>
+                <button onclick="appendvalue('6')">6</button>
+                <button style="color:orangered"; onclick="appendvalue('-')">-</button>
+            </div>
+
+         <div class="fourth-row">
+                <button class="op" onclick="appendvalue('1') ">1</button>
+                 <button onclick="appendvalue('2')">2</button>
+                <button onclick="appendvalue('3')">3</button>
+                <button style="color:orangered"; onclick="appendvalue('+')">+</button>
+        </div>
+
+        <div class="last-row">
+            <button  class="op" onclick="appendvalue('00') ">00</button>
+             <button onclick="appendvalue('0')">0</button>
+            <button onclick="appendvalue('.')">.</button>
+            <button style="background-color: orangered";  onclick="calculateResult()">=</button>
+    </div>
+                    
+        </div>
+    </div>
+
+</body>
+<script>
+    let display = document.getElementById("display");
+
+
+function appendvalue(value) {
+    display.value += value;
+}
+
+
+function clearDisplay() {
+    display.value = '';
+}
+
+
+function calculateResult() {
+    try {
+        let result = display.value;
+
+
+        result = result.replace(/x/g, '*');  
+        result = result.replace(/%/g, '/100'); 
+
+        display.value = eval(result);
+    } catch (e) {
+        display.value = 'Error'; 
+    }
+}
+
+
+function removeLastCharacter() {
+    display.value = display.value.slice(0, -1); 
+}
+
+
+function appendvalue(value) {
+    if (value === 'x') {
+        removeLastCharacter();  
+    } else {
+        display.value += value;  
+    }
+}
+
+</script>
+
+
+</script>
+</head>
+</html>
